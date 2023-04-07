@@ -1,8 +1,8 @@
-const subjects = ['You', 'Your', 'Reminder:'];
+const subjects = ['You','Your'];
 const verbs = ['are', 'will', 'can'];
-const noun = ['hard work', 'dedication', 'resilience'];
+const noun = ['hard work','dedication','resilience'];
 const complementArr1 = ['great', 'capable', 'strong'];
-const complementArr2= ['succeed','accomplish anything', 'see results', 'improve'];
+const complementArr2= ['succeed','accomplish anything','see results', 'improve'];
 const componentsArray = [subjects, verbs, noun, complementArr1, complementArr2];
 
 const messageGen = arr =>{
@@ -14,13 +14,15 @@ const messageGen = arr =>{
      }
 
      if(arr[0][randArr[0]] === 'Your'){
-        motPhrase.push(arr[0][randArr[0]],arr[2][randArr[2]],' will help you ', arr[4][randArr[4]]);
+        motPhrase.push(arr[0][randArr[0]],arr[2][randArr[2]],'will help you', arr[4][randArr[4]]);
      }else{
-        for(let i=0; i<randArr.length; i++){
-            motPhrase.push(arr[i][randArr[i]]);
-        }
+      if(arr[1][randArr[1]] === 'can' || arr[1][randArr[1]] === 'will'){
+         motPhrase.push(arr[0][randArr[0]], arr[1][randArr[1]], arr[4][randArr[4]]);
+      }else{
+         motPhrase.push(arr[0][randArr[0]], arr[1][randArr[1]], arr[3][randArr[3]]);
+      }
      }
-     return motPhrase.toString();
+     return motPhrase.join(' ');
 
 }
 console.log(messageGen(componentsArray));
